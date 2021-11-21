@@ -11,7 +11,6 @@ jobs:
           - GOOS: windows
             GOARCH: amd64
       
-        
     name: Build ${{ matrix.GOOS }}/${{ matrix.GOARCH }}
     steps:
     - name: Checkout
