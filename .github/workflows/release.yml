@@ -4,7 +4,10 @@ jobs:
   build_binary:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-go@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Go
+      uses: actions/setup-go@v2
     - run: mkdir bin
     - run: go build -o ./bin/ ./cmds/bwenv
+    - run: GOOS=windows GOARCH=amd64 go build -o ./bin/ ./cmds/bwenv
