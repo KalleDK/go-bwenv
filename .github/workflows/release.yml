@@ -24,3 +24,11 @@ jobs:
       with:
         name: bwenv-${{ matrix.GOOS }}-${{ matrix.GOARCH }}
         path: ./bin/*
+  create_release:
+    needs: build_binary
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+    - name: Display structure of downloaded files
+      run: ls -R
