@@ -12,10 +12,10 @@ jobs:
     - run: go build -o ./bin/ ./cmds/bwenv
     - uses: actions/upload-artifact@v2
       with:
-        name: bwenv
+        name: bwenv-amd64
         path: ./bin/bwenv
     - run: GOOS=windows GOARCH=amd64 go build -o ./bin/ ./cmds/bwenv
     - uses: actions/upload-artifact@v2
       with:
-        name: bwenv.exe
+        name: bwenv-win
         path: ./bin/bwenv.exe
