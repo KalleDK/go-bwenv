@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        GOOS: [linux, freebsd]
-        GOARCH: [amd64, arm, arm64]
+        GOOS: [linux]
+        GOARCH: [amd64]
         include:
           - GOOS: windows
             GOARCH: amd64
@@ -31,3 +31,7 @@ jobs:
     - uses: actions/download-artifact@v2
     - name: Display structure of downloaded files
       run: ls -R
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ./bwenv*/*
