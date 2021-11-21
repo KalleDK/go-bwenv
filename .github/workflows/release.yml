@@ -17,5 +17,5 @@ jobs:
     - run: GOOS=windows GOARCH=amd64 go build -o ./bin/ ./cmds/bwenv
     - uses: actions/upload-artifact@v2
       with:
-        name: bwenv
+        name: bwenv.exe
         path: ./bin/bwenv.exe
