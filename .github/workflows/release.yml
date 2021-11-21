@@ -3,19 +3,19 @@ on: [push]
 jobs:
   build_binary:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        GOOS: ['windows', 'linux', 'freebsd']
+        GOARCH: ['amd64', 'arm', 'arm64']
+    name: Build ${{ matrix.GOOS }}/${{ matrix.GOARCH }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Setup Go
       uses: actions/setup-go@v2
     - run: mkdir bin
-    - run: go build -o ./bin/ ./cmds/bwenv
+    - run: GOOS=${{ matrix.GOOS }} GOARCH=${{ matrix.GOARCH }} go build -o ./bin/ ./cmds/bwenv
     - uses: actions/upload-artifact@v2
       with:
-        name: bwenv-amd64
-        path: ./bin/bwenv
-    - run: GOOS=windows GOARCH=amd64 go build -o ./bin/ ./cmds/bwenv
-    - uses: actions/upload-artifact@v2
-      with:
-        name: bwenv-win
-        path: ./bin/bwenv.exe
+        name: bwenv-${{ matrix.GOOS }}-${{ matrix.GOARCH }}
+        path: ./bin/*
