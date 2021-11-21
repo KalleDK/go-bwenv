@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        GOOS: [linux]
-        GOARCH: [amd64]
+        GOOS: [linux, freebsd]
+        GOARCH: [amd64, arm, arm64]
         include:
           - GOOS: windows
             GOARCH: amd64
